@@ -17,8 +17,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     //create some users for demo purposes
-
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
@@ -35,7 +33,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin/*").hasRole("admin")
                 .antMatchers("/user/*").hasRole("user")
-                .antMatchers("/tech/*").hasRole("technician")
+                .antMatchers("/technician/*").hasRole("technician")
                 .antMatchers("/hello").permitAll()
                 .and()
                 .httpBasic()
@@ -45,8 +43,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        // ALTOUGH THIS SEEMS LIKE USELESS CODE,
-        // ITS REQUIRED TO PREVEND SPRING BOOT AUTO-CONFIGURATION
         return super.authenticationManagerBean();
     }
 }
